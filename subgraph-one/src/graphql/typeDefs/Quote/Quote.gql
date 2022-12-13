@@ -1,0 +1,5 @@
+type Quote {
+  _id: ID
+  user: User
+  amount: Int
+}

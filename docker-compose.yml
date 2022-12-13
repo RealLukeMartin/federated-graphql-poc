@@ -1,0 +1,17 @@
+version: '3'
+services:
+  federated-gateway:
+    container_name: federated-gateway
+    build: ./federated-gateway
+    environment:
+      - APOLLO_SCHEMA_CONFIG_EMBEDDED=true
+    volumes:
+      - ./federated-gateway/supergraph.graphql:/app/supergraph.graphql
+    ports:
+      - "4000:4000"
+  subgraph-one:
+    container_name: subgraph-one
+    build: ./subgraph-one
+  subgraph-two:
+    container_name: subgraph-two
+    build: ./subgraph-two

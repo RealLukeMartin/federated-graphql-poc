@@ -1,0 +1,10 @@
+type Program {
+  _id: String
+  name: String
+  type: String
+}
+
+input CreateProgramInputs {
+  name: String
+  type: String
+}

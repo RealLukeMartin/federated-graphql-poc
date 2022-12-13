@@ -1,0 +1,68 @@
+name: Process PR to Staging
+on:
+  pull_request:
+    branches:
+      - temp
+    types: [opened, reopened, synchronize, ready_for_review]
+
+jobs:
+  run-linters:
+    name: Run Linters
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+  run-tests:
+    name: Run Tests
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run Tests
+        run: npm run test:coverage
+
+  run-build:
+    name: Run Build
+    if: github.event.pull_request.draft == false
+    needs: [run-tests, run-linters]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:all

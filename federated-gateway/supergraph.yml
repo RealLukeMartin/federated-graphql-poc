@@ -1,0 +1,9 @@
+subgraphs:
+  subgraph-one:
+    routing_url: http://subgraph-one/graphql
+    schema:
+      subgraph_url: http://subgraph-one/graphql
+  subgraph-two:
+    routing_url: http://subgraph-two/graphql
+    schema:
+      subgraph_url:  http://subgraph-two/graphql

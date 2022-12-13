@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "*.config.js",
+    "jest-mongodb-config.js",
+  ]
+}

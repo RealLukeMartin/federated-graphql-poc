@@ -1,0 +1,15 @@
+overwrite: true
+schema: './src/graphql/typeDefs/**/*.gql'
+documents: null
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      # scalars:
+      #   DateTime: Date
+      # enumValues:
+      #   BusinessType: '../services/application/enums/BusinessType#BusinessType'
+      #   CftcnfaRadio: '../services/application/enums/CftcnfaRadio#CftcnfaRadio'
+      #   LimitedFungiLimitInterval: '../services/quote/hybridHomeowners/enums/LimitedFungiLimitInterval#LimitedFungiLimitInterval'
